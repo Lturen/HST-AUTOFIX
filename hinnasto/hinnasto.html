@@ -3,124 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etusivu</title>
+    <title>Hinnasto – HST-AUTOFIX</title>
 </head>
 <style>
+*, *::before, *::after { box-sizing: border-box; }
 body {
-    background: linear-gradient(to bottom, #EFE6D5 0%, #423428 100%);
-    background-attachment: fixed; /* Pitää taustan paikallaan rullatessa */
-    height: 100vh;           /* Pakottaa bodyn vähintään näytön korkuiseksi */
-    margin: 0;
-}
-header {
-    display: flex;
-}
-.header-class {
-    display: flex;
-    gap: 15px; /* Väli logojen välille */
-    flex : 1;
-    padding: 1.24em;
-
-}
-header img {
-    display: flex;
-    gap: 15px; /* Väli logojen välille */
-    flex : 1;
-    padding: 1.24em;
-
-}
-header p {
-    display: flex;
-    text-align: center;
-    margin-top: 1.3em;
-    font-weight: bold;
-    color: #423428;
-    font-size: 1.8em;
-}
-header a {
-    display: flex;
-    margin-left: 2em;
-    color: #423428;
-    text-decoration: none; /* Poistaa alleviivauksen */
-    font-size: 2.5em;      /* Voit säätää otsikon kokoa tästä */
-    transition: all 0.9s ease;
-}
-header a:hover {
-    opacity: 0.8;
-}
-nav {
-    display: flex;
-    justify-content: center;
-    padding: 1em;
-    
-}
-a  {
-    color: #423428;
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 1.9em;
-    font-weight: bold;
-    
-}
-.container {
-    display: flex;
-    flex-direction: column;
+    background-color: #EFE6D5;
     min-height: 100vh;
+    max-width: 1480px;
+    margin: 0;
+    font-family: inherit;
+}
+img { max-width: 100%; height: auto; display: block; }
+.container { width: 100%; }
 
-}
-content {
-    flex: 1;
-}
-.box {
-    width: 100%;
-    height: 10em;
-    text-align: center;
-    font-size: 2.5em;
-}
-footer {
-    padding: 20px;
-    text-align: center;
-    color: #423428;
-    /* Jos haluat footerin erottuvan, voit lisätä: */
-    /* background: rgba(0,0,0,0.05); */
-}
-footer p {
-    color: #423428;
-    margin: 0;             /* Poistaa ylimääräiset tyhjät välit */
-}
+header { display: flex; align-items: center; justify-content: space-between; padding: 0 1em; min-height: 70px; }
+.header-class { display: flex; gap: 12px; align-items: center; flex: 1; }
+.header-class a { display: flex; align-items: center; font-size: 1em; margin: 0; color: #423428; transition: opacity .3s; }
+.header-class a:hover { opacity: .7; }
+.header-class img { width: 2em; height: 2em; }
+.header-center { flex: 0; white-space: nowrap; }
+.header-center p { margin: 0; font-weight: bold; color: #423428; font-size: 1.8em; }
+.header-center a { color: #423428; text-decoration: none; font-size: 1em; font-weight: bold; margin: 0; }
+.header-right { flex: 1; display: flex; justify-content: flex-end; }
 
+nav { display: flex; justify-content: center; width: 100%; padding: .9em 1em; background-color: #423428; position: relative; }
+.nav-links { display: flex; list-style: none; margin: 0; padding: 0; }
+.nav-links li a { color: #EFE6D5; text-decoration: none; font-size: 1.4em; font-weight: bold; margin: 0 18px; transition: opacity .3s; }
+.nav-links li a:hover { opacity: .75; }
+.hamburger {
+    display: none; flex-direction: column; justify-content: space-between;
+    width: 28px; height: 20px; background: none; border: none; cursor: pointer; padding: 0;
+    position: absolute; right: 1.2em; top: 50%; transform: translateY(-50%);
+}
+.hamburger span { display: block; width: 100%; height: 3px; background: #EFE6D5; border-radius: 3px; transition: all .35s; transform-origin: center; }
+.hamburger.open span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
 
+.content { display: flex; flex-wrap: wrap; padding: 3em; gap: 40px; }
 
+.price-section { width: 100%; }
+.price-section h2 { color: #423428; font-size: 2em; margin-bottom: .4em; border-bottom: 3px solid #423428; padding-bottom: .2em; }
+.price-section p.tagline { color: #423428; font-size: 1.15em; font-weight: bold; text-transform: uppercase; margin-bottom: .8em; line-height: 1.5; }
+.price-section p.note { color: #423428; font-size: 1.1em; margin-bottom: 1.5em; font-style: italic; }
+
+.price-table { width: 100%; border-collapse: collapse; font-size: 1.2em; color: #423428; }
+.price-table thead tr { background-color: #423428; color: #EFE6D5; }
+.price-table thead td { padding: .6em 1em; font-weight: bold; font-size: 1.05em; }
+.price-table tbody tr:nth-child(even) td { background: rgba(66,52,40,.08); }
+.price-table tbody tr:hover td { background: rgba(66,52,40,.18); }
+.price-table tbody td { padding: .55em 1em; vertical-align: top; border-bottom: 1px solid rgba(66,52,40,.2); }
+.price-table td:last-child { text-align: right; white-space: nowrap; font-weight: bold; }
+.price-category td[colspan] { text-align: left !important; }
+.price-category { background: rgba(66,52,40,.15) !important; }
+.price-category td { font-weight: bold !important; font-size: 1.05em; padding-top: 1em !important; text-transform: uppercase; text-align: left !important; }
+.price-table tbody tr.price-category:not(:first-child) td { padding-top: 2.2em !important; }
+
+.cta-note { width: 100%; text-align: center; color: #423428; font-size: 1.4em; font-weight: bold; margin-top: -1em; }
+.cta-note a { color: #423428; font-size: 1em; text-decoration: underline; margin: 0; }
+
+footer { padding: 20px; text-align: center; color: #423428; }
+footer p { color: #423428; margin: 0; }
+
+@media (max-width: 640px) {
+    header { min-height: 60px; padding: 0 .8em; }
+    .header-class img { width: 1.6em; height: 1.6em; }
+    .header-center p { font-size: 1.3em; }
+    nav { flex-direction: column; align-items: flex-start; padding: .7em 1em; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; flex-direction: column; width: 100%; padding: .6em 0 .2em; gap: 2px; }
+    .nav-links.open { display: flex; }
+    .nav-links li a { font-size: 1.2em; margin: 0; padding: .5em .2em; display: block; border-bottom: 1px solid rgba(239,230,213,.2); }
+    .content { padding: 1.5em 1.2em; gap: 20px; }
+    .price-table { font-size: 1em; }
+    .price-table thead td, .price-table tbody td { padding: .45em .6em; }
+}
 </style>
 <body>
-    <div class="container">
+<div class="container">
     <header>
-    <div class="header-class">
-    <a href = "https://www.facebook.com/p/HST-Autofix-61579099013716/" target="_blank">
-    <img src="Facebook_Logo_Secondary.png" alt="Facebook-logo" style="width: 1.1em; height: 1.1em;">
-    </a>
-    <a href = "https://www.instagram.com/hstautofixsamppa/" target="_blank">
-    <img src="Instagram_Glyph_Black.png" alt="Instagram-logo" style="width: 1.1em; height: 1.1em;">
-    </a>
-    <p><a href="/index.html">HST-AUTOFIX</a></p>
-    </div>
-    </header>
-    <nav>
-        <div class="nav-item"><a href="/hinnasto/hinnasto.html">Hinnasto</a></div>
-        <div class="nav-item"><a href="/yhteystiedot/yhteystiedot.html">Yhteystiedot</a></div>
-        <div class="nav-item"><a href="/palvelut/palvelut.html">Palvelut</a></div>
-    </nav>
-    <div class="content">
-        <div class="box">
-            <h3 style="color: #423428;">Tulossa pian!</h3>
+        <div class="header-class">
+            <a href="https://www.facebook.com/p/HST-Autofix-61579099013716/" target="_blank">
+                <img src="../Facebook_Logo_Secondary.png" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/hstautofixsamppa/" target="_blank">
+                <img src="../Instagram_Glyph_Black.png" alt="Instagram">
+            </a>
         </div>
+        <div class="header-center"><p><a href="/index.html">HST-AUTOFIX</a></p></div>
+        <div class="header-right"></div>
+    </header>
 
+    <nav>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/hinnasto/hinnasto.html">Hinnasto</a></li>
+            <li><a href="/yhteystiedot/yhteystiedot.html">Yhteystiedot</a></li>
+            <li><a href="/palvelut/palvelut.html">Palvelut</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Avaa valikko" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="content">
+        <div class="price-section">
+            <h2>Hinnasto</h2>
+            <p class="tagline">Isommissa töissä kysy tarjousta</p>
+            <p class="note">Hinnat sisältävät ALV 25,5 %. Lopullinen hinta riippuu ajoneuvon merkistä ja mallista. Pyydä tarkempi tarjous — soita tai lähetä sähköpostia!</p>
+            <table class="price-table">
+                <thead><tr><td>Palvelu</td><td style="text-align:right;">Hinta (alkaen)</td></tr></thead>
+                <tbody>
+                    <tr class="price-category"><td colspan="2">Määräaikaishuolto (60 &euro;) </td></tr>
+                    <tr><td>Moottoriöljyn vaihto</td><td></td></tr>
+                    <tr><td>Öljynsuodattimen vaihto</td><td></td></tr>
+                    <tr><td>Ilmansuodattimen vaihto</td><td></td></tr>
+                    <tr><td>Polttoainesuodattimen vaihto</td><td></td></tr>
+                    <tr><td>Raitisilmasuodattimen vaihto</td><td></td></tr>
+
+                    <tr class="price-category"><td colspan="2">Jarrutyöt</td></tr>
+                    <tr><td>Jarrupalalojen vaihto</td><td></td></tr>
+                    <tr><td>Jarrulevujen vaihto</td><td></td></tr>
+                    <tr><td>Jarrulevyt + -palat</td><td></td></tr>
+                    <tr><td>Jarrunesteen vaihto</td><td></td></tr>
+                    <tr><td>Jarrusatuloiden vaihto</td><td></td></tr>
+
+                    <tr class="price-category"><td colspan="2">Rengastyöt alk. 20 &euro;</td></tr>
+                    <tr><td>Renkaanvaihto (4 kpl, vanteilla)</td><td></td></tr>
+                    <tr><td>Tasapainotus (4 kpl)</td><td></td></tr>
+                    <tr><td>Renkaan irrotus + asennus vanteesta (4 kpl)</td><td></td></tr>
+
+                    <tr class="price-category"><td colspan="2">Moottoripyörien korjaukset, huollot & kustomoinnit</td></tr>
+                    <tr><td>Tuntiveloitus</td><td>50 €</td></tr>
+                    <tr><td>Huollot</td><td></td></tr>
+                    <tr><td>Pesut</td><td></td></tr>
+                    <tr><td>Vahaukset</td><td></td></tr>
+                    <tr><td>Moottorin korjaukset</td><td></td></tr>
+                    <tr><td>Muutostyöt</td><td></td></tr>
+                    <tr><td>Ultraäänipesut</td><td></td></tr>
+                    <tr><td>Varusteasennukset</td><td></td></tr>
+                    <tr><td>Maalaustyöt</td><td></td></tr>
+                    <tr><td>Noutopalvelu (nouto huoltoon ja palautus)</td><td></td></tr>
+
+                    <tr class="price-category"><td colspan="2">Sähkö &amp; diagnostiikka</td></tr>
+                    <tr><td>Vikadiagnostiikka (OBD-luku)</td><td>20 €</td></tr>
+                    <tr><td>Akun vaihto (ilman akkua)</td><td>20 €</td></tr>
+
+                    <tr class="price-category"><td colspan="2">Alusta &amp; ohjaus</td></tr>
+                    <tr><td>Pyöränlaakerin vaihto</td><td>69 €</td></tr>
+                    <tr><td>Iskunvaimentajan vaihto</td><td>49 €</td></tr>
+
+                    <tr class="price-category"><td colspan="2">Hitsaustyöt</td></tr>
+                    <tr><td>Tuntiveloitus</td><td>60 €/h</td></tr>
+
+                    
+
+                    <tr class="price-category"><td colspan="2">Pesut ja perushuollot</td></tr>
+                    <tr><td>Peruspesu</td><td>25 €</td></tr>
+                    <tr><td>Hydro-vaha</td><td>30 €</td></tr>
+                    <tr><td>Hydro Nano Coating</td><td>50 €</td></tr>
+                    <tr><td>Vannepesu</td><td>15 €</td></tr>
+                    <tr><td>Kevyt imurointi</td><td>10 €</td></tr>
+                    <tr><td>Perfect imurointi + kojelaudan puhdistus</td><td>25 €</td></tr>
+                    <tr><td>Ikkunat</td><td>25 €</td></tr>
+
+                    <tr class="price-category"><td colspan="2">Pinnoitteet</td></tr>
+                    <tr><td>9H Nano Pinnoite (hinta sisältää takuun ja takuutodistuksen, pisimmillään 5 v. takuu)</td><td>850–1200 €</td></tr>
+
+                    <tr class="price-category"><td colspan="2">Kiillotukset</td></tr>
+                    <tr><td>1 Step kiillotus</td><td>200 €</td></tr>
+                    <tr><td>2 Step kiillotus</td><td>360 €</td></tr>
+                    <tr><td>3 Step kiillotus</td><td>600 €</td></tr>
+
+                    <tr class="price-category"><td colspan="2">Työtuntiveloitukset</td></tr>
+                    <tr><td>Työtuntihinta (henkilöautot)</td><td>60 €/h</td></tr>
+                    <tr><td>Työtuntihinta (moottoripyörät)</td><td>50 €/h</td></tr>
+                    <tr><td>Hitsaukset</td><td>60 €/h</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="cta-note">Epäselvä tilanne? <a href="/yhteystiedot/yhteystiedot.html">Ota yhteyttä</a> — arvioidaan yhdessä!</p>
     </div>
+
     <footer>
         <p>&copy; 2026 HST-AUTOFIX</p>
-        <p style= "font-size: 2em; font-weight: bold;">hstautofixsamppa</p>
+        <p style="font-size:2em;font-weight:bold;">hstautofixsamppa</p>
     </footer>
-    </div>
-
+</div>
+<script>
+const btn = document.getElementById('hamburger');
+const links = document.getElementById('navLinks');
+btn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+});
+</script>
 </body>
 </html>
