@@ -70,7 +70,8 @@ nav { display: flex; justify-content: center; width: 100%; padding: .9em 1em; ba
 /* PROMO CARDS */
 .promo-row { display: flex; flex-wrap: wrap; gap: 16px; padding: 2em 3em; }
 .promo-card { flex: 1; min-width: 240px; border: 3px solid #423428; border-radius: 4px; overflow: hidden; }
-.promo-card img { width: 100%; height: 200px; object-fit: cover; object-position: top; cursor: zoom-in; }
+.promo-card img { width: 100%; height: 200px; object-fit: cover; object-position: top; cursor: zoom-in; transition: transform .4s ease; }
+.promo-card:hover img { transform: scale(1.03); }
 .promo-card-body { padding: .8em 1em; background: rgba(66,52,40,.06); }
 .promo-card-body h3 { color: #423428; font-size: 1.1em; margin: 0 0 .3em; }
 .promo-card-body p { color: #423428; font-size: 0.9em; line-height: 1.5; margin: 0; }
@@ -174,7 +175,7 @@ footer p { color: #423428; margin: 0; }
     <div class="hero">
         <div class="hero-text">
             <h1>Ajoneuvojen & moottoripyörien korjaamo Tuusulassa</h1>
-            <p>HST-AUTOFIX on vuonna 2020 perustettu autokorjaamo Hyrylässä, Mahlamäentie 64. Tarjoamme monipuolisia korjaus- ja huoltopalveluita henkilöautoille sekä moottoripyörille — öljynvaihdoista ja jarrutöistä maalipinnan kiillotuksiin ja kustomointeihin. Rehellisesti, ammattitaidolla ja kilpailukykyisin hinnoin.</p>
+            <p>HST-AUTOFIX on vuonna 2020 perustettu autokorjaamo Tuusulassa, Mahlamäentie 64. Tarjoamme monipuolisia korjaus- ja huoltopalveluita henkilöautoille sekä moottoripyörille — öljynvaihdoista ja jarrutöistä maalipinnan kiillotuksiin ja kustomointeihin. Rehellisesti, ammattitaidolla ja kilpailukykyisin hinnoin.</p>
             <a href="https://www.facebook.com/p/HST-Autofix-61579099013716/?locale=fi_FI&_rdr#IwZXh0bgNhZW0CMTAAc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjOfZ9cGRjGtx9jGBHHyh_sWu2v6u5ZK7X2v_px0jq8zNGJD42mzkrBAuX96_aem_yxhGKD42hweajPZfbDFkBA" target="_blank" class="hero-link">Linkki ajanvaraukseen</a>
         </div>
         <div class="hero-logo">
@@ -230,7 +231,7 @@ footer p { color: #423428; margin: 0; }
     <!-- CTA BANNER -->
     <div class="cta-banner">
         <h2>Varaa aika tai tule suoraan käymään!</h2>
-        <p>Mahlamäentie 64, 04310 Hyrylä &nbsp;·&nbsp; 050 537 4863 &nbsp;·&nbsp; hstautofix@gmail.com</p>
+        <p>Mahlamäentie 64, 04310 Tuusula &nbsp;·&nbsp; 050 537 4863 &nbsp;·&nbsp; hstautofix@gmail.com</p>
         <a href="/yhteystiedot/yhteystiedot.html">Katso yhteystiedot ja aukioloajat →</a>
     </div>
  

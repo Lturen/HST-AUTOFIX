@@ -16,7 +16,7 @@ body {
 }
 img { max-width: 100%; height: auto; display: block; }
 .container { width: 100%; }
-
+ 
 header { display: flex; align-items: center; justify-content: space-between; padding: 0 1em; min-height: 70px; }
 .header-class { display: flex; gap: 12px; align-items: center; flex: 1; }
 .header-class a { display: flex; align-items: center; font-size: 1em; margin: 0; color: #423428; transition: opacity .3s; }
@@ -24,9 +24,10 @@ header { display: flex; align-items: center; justify-content: space-between; pad
 .header-class img { width: 2em; height: 2em; }
 .header-center { flex: 0; white-space: nowrap; }
 .header-center p { margin: 0; font-weight: bold; color: #423428; font-size: 1.8em; }
-.header-center a { color: #423428; text-decoration: none; font-size: 1em; font-weight: bold; margin: 0; }
+.header-center a { color: #423428; text-decoration: none; font-size: 1em; font-weight: bold; margin: 0; transition: opacity .3s; }
+.header-center a:hover { opacity: .7; }
 .header-right { flex: 1; display: flex; justify-content: flex-end; }
-
+ 
 nav { display: flex; justify-content: center; width: 100%; padding: .9em 1em; background-color: #423428; position: relative; }
 .nav-links { display: flex; list-style: none; margin: 0; padding: 0; }
 .nav-links li a { color: #EFE6D5; text-decoration: none; font-size: 1.4em; font-weight: bold; margin: 0 18px; transition: opacity .3s; }
@@ -40,14 +41,14 @@ nav { display: flex; justify-content: center; width: 100%; padding: .9em 1em; ba
 .hamburger.open span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger.open span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
-
+ 
 .content { display: flex; flex-wrap: wrap; padding: 3em; gap: 40px; }
-
+ 
 .price-section { width: 100%; }
 .price-section h2 { color: #423428; font-size: 2em; margin-bottom: .4em; border-bottom: 3px solid #423428; padding-bottom: .2em; }
 .price-section p.tagline { color: #423428; font-size: 1.15em; font-weight: bold; text-transform: uppercase; margin-bottom: .8em; line-height: 1.5; }
 .price-section p.note { color: #423428; font-size: 1.1em; margin-bottom: 1.5em; font-style: italic; }
-
+ 
 .price-table { width: 100%; border-collapse: collapse; font-size: 1.2em; color: #423428; }
 .price-table thead tr { background-color: #423428; color: #EFE6D5; }
 .price-table thead td { padding: .6em 1em; font-weight: bold; font-size: 1.05em; }
@@ -59,13 +60,13 @@ nav { display: flex; justify-content: center; width: 100%; padding: .9em 1em; ba
 .price-category { background: rgba(66,52,40,.15) !important; }
 .price-category td { font-weight: bold !important; font-size: 1.05em; padding-top: 1em !important; text-transform: uppercase; text-align: left !important; }
 .price-table tbody tr.price-category:not(:first-child) td { padding-top: 2.2em !important; }
-
+ 
 .cta-note { width: 100%; text-align: center; color: #423428; font-size: 1.4em; font-weight: bold; margin-top: -1em; }
 .cta-note a { color: #423428; font-size: 1em; text-decoration: underline; margin: 0; }
-
+ 
 footer { padding: 20px; text-align: center; color: #423428; }
 footer p { color: #423428; margin: 0; }
-
+ 
 @media (max-width: 640px) {
     header { min-height: 60px; padding: 0 .8em; }
     .header-class img { width: 1.6em; height: 1.6em; }
@@ -94,7 +95,7 @@ footer p { color: #423428; margin: 0; }
         <div class="header-center"><p><a href="/index.html">HST-AUTOFIX</a></p></div>
         <div class="header-right"></div>
     </header>
-
+ 
     <nav>
         <ul class="nav-links" id="navLinks">
             <li><a href="/hinnasto/hinnasto.html">Hinnasto</a></li>
@@ -105,12 +106,13 @@ footer p { color: #423428; margin: 0; }
             <span></span><span></span><span></span>
         </button>
     </nav>
-
+ 
     <div class="content">
         <div class="price-section">
             <h2>Hinnasto</h2>
-            <p class="tagline">Isommissa töissä kysy tarjousta</p>
-            <p class="note">Hinnat sisältävät ALV 25,5 %. Lopullinen hinta riippuu ajoneuvon merkistä ja mallista. Pyydä tarkempi tarjous — soita tai lähetä sähköpostia!</p>
+            <p class="tagline">Suunnitteilla isompi remontti tai vaativa huolto?</p>
+            <p class="note" style="font-style: normal;">Meiltä onnistuvat vaativat työt ja laajat huoltokokonaisuudet vankalla ammattitaidolla. Kun kyseessä on suurempi kokonaisuus, teemme sinulle aina kilpailukykyisen ja räätälöidyn kokonaistarjouksen. Älä murehdi kustannuksia etukäteen – pyydä meiltä tarkka kustannusarvio, niin katsotaan pakettihinta kerralla kuntoon ja autosi takaisin tielle.</p>
+            <p class="note" style="font-style: normal;">Hinnat sisältävät ALV 25,5 %.</p>
             <table class="price-table">
                 <thead><tr><td>Palvelu</td><td style="text-align:right;">Hinta (alkaen)</td></tr></thead>
                 <tbody>
@@ -120,19 +122,19 @@ footer p { color: #423428; margin: 0; }
                     <tr><td>Ilmansuodattimen vaihto</td><td></td></tr>
                     <tr><td>Polttoainesuodattimen vaihto</td><td></td></tr>
                     <tr><td>Raitisilmasuodattimen vaihto</td><td></td></tr>
-
+ 
                     <tr class="price-category"><td colspan="2">Jarrutyöt</td></tr>
                     <tr><td>Jarrupalalojen vaihto</td><td></td></tr>
                     <tr><td>Jarrulevujen vaihto</td><td></td></tr>
                     <tr><td>Jarrulevyt + -palat</td><td></td></tr>
                     <tr><td>Jarrunesteen vaihto</td><td></td></tr>
                     <tr><td>Jarrusatuloiden vaihto</td><td></td></tr>
-
+ 
                     <tr class="price-category"><td colspan="2">Rengastyöt alk. 20 &euro;</td></tr>
                     <tr><td>Renkaanvaihto (4 kpl, vanteilla)</td><td></td></tr>
                     <tr><td>Tasapainotus (4 kpl)</td><td></td></tr>
                     <tr><td>Renkaan irrotus + asennus vanteesta (4 kpl)</td><td></td></tr>
-
+ 
                     <tr class="price-category"><td colspan="2">Moottoripyörien korjaukset, huollot & kustomoinnit</td></tr>
                     <tr><td>Tuntiveloitus</td><td>50 €</td></tr>
                     <tr><td>Huollot</td><td></td></tr>
@@ -144,20 +146,20 @@ footer p { color: #423428; margin: 0; }
                     <tr><td>Varusteasennukset</td><td></td></tr>
                     <tr><td>Maalaustyöt</td><td></td></tr>
                     <tr><td>Noutopalvelu (nouto huoltoon ja palautus)</td><td></td></tr>
-
+ 
                     <tr class="price-category"><td colspan="2">Sähkö &amp; diagnostiikka</td></tr>
                     <tr><td>Vikadiagnostiikka (OBD-luku)</td><td>20 €</td></tr>
                     <tr><td>Akun vaihto (ilman akkua)</td><td>20 €</td></tr>
-
+ 
                     <tr class="price-category"><td colspan="2">Alusta &amp; ohjaus</td></tr>
                     <tr><td>Pyöränlaakerin vaihto</td><td>69 €</td></tr>
                     <tr><td>Iskunvaimentajan vaihto</td><td>49 €</td></tr>
-
+ 
                     <tr class="price-category"><td colspan="2">Hitsaustyöt</td></tr>
                     <tr><td>Tuntiveloitus</td><td>60 €/h</td></tr>
-
+ 
                     
-
+ 
                     <tr class="price-category"><td colspan="2">Pesut ja perushuollot</td></tr>
                     <tr><td>Peruspesu</td><td>25 €</td></tr>
                     <tr><td>Hydro-vaha</td><td>30 €</td></tr>
@@ -166,15 +168,15 @@ footer p { color: #423428; margin: 0; }
                     <tr><td>Kevyt imurointi</td><td>10 €</td></tr>
                     <tr><td>Perfect imurointi + kojelaudan puhdistus</td><td>25 €</td></tr>
                     <tr><td>Ikkunat</td><td>25 €</td></tr>
-
+ 
                     <tr class="price-category"><td colspan="2">Pinnoitteet</td></tr>
                     <tr><td>9H Nano Pinnoite (hinta sisältää takuun ja takuutodistuksen, pisimmillään 5 v. takuu)</td><td>850–1200 €</td></tr>
-
+ 
                     <tr class="price-category"><td colspan="2">Kiillotukset</td></tr>
                     <tr><td>1 Step kiillotus</td><td>200 €</td></tr>
                     <tr><td>2 Step kiillotus</td><td>360 €</td></tr>
                     <tr><td>3 Step kiillotus</td><td>600 €</td></tr>
-
+ 
                     <tr class="price-category"><td colspan="2">Työtuntiveloitukset</td></tr>
                     <tr><td>Työtuntihinta (henkilöautot)</td><td>60 €/h</td></tr>
                     <tr><td>Työtuntihinta (moottoripyörät)</td><td>50 €/h</td></tr>
@@ -184,7 +186,7 @@ footer p { color: #423428; margin: 0; }
         </div>
         <p class="cta-note">Epäselvä tilanne? <a href="/yhteystiedot/yhteystiedot.html">Ota yhteyttä</a> — arvioidaan yhdessä!</p>
     </div>
-
+ 
     <footer>
         <p>&copy; 2026 HST-AUTOFIX</p>
         <p style="font-size:2em;font-weight:bold;">hstautofixsamppa</p>

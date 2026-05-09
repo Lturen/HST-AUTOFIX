@@ -24,7 +24,8 @@ header { display: flex; align-items: center; justify-content: space-between; pad
 .header-class img { width: 2em; height: 2em; }
 .header-center { flex: 0; white-space: nowrap; }
 .header-center p { margin: 0; font-weight: bold; color: #423428; font-size: 1.8em; }
-.header-center a { color: #423428; text-decoration: none; font-size: 1em; font-weight: bold; margin: 0; }
+.header-center a { color: #423428; text-decoration: none; font-size: 1em; font-weight: bold; margin: 0; transition: opacity .3s; }
+.header-center a:hover { opacity: .7; }
 .header-right { flex: 1; display: flex; justify-content: flex-end; }
  
 nav { display: flex; justify-content: center; width: 100%; padding: .9em 1em; background-color: #423428; position: relative; }
