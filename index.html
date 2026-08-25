@@ -78,6 +78,26 @@ nav { display: flex; justify-content: center; width: 100%; padding: .9em 1em; ba
 .promo-card-body h3 { color: #423428; font-size: 1.1em; margin: 0 0 .3em; }
 .promo-card-body p { color: #423428; font-size: 0.9em; line-height: 1.5; margin: 0; }
 
+/* RENGASHOTELLI */
+.rengashotelli { display: flex; flex-wrap: wrap; gap: 28px; align-items: center; background: #423428; color: #EFE6D5; border-radius: 4px; margin: 2.5em 3em 0; padding: 2em; }
+.rengashotelli-kuva { flex: 0 0 280px; max-width: 100%; }
+.rengashotelli-kuva img { width: 100%; border-radius: 4px; border: 3px solid #EFE6D5; cursor: zoom-in; transition: transform .4s ease; }
+.rengashotelli-kuva img:hover { transform: scale(1.02); }
+.rengashotelli-teksti { flex: 1; min-width: 280px; }
+.rengashotelli-teksti h2 { margin: 0 0 .15em; font-size: 1.9em; color: #EFE6D5; }
+.rengashotelli-teksti .paikkakunnat { margin: 0 0 .9em; font-size: 1.05em; letter-spacing: .05em; opacity: .85; }
+.rengashotelli-teksti ul { margin: 0 0 1.1em; padding-left: 1.2em; columns: 2; column-gap: 28px; }
+.rengashotelli-teksti li { margin-bottom: .35em; font-size: 1.02em; line-height: 1.5; break-inside: avoid; }
+.rengashotelli-hinta { font-size: 1.6em; font-weight: bold; margin: 0; }
+.rengashotelli-hinta span { display: block; font-size: .58em; font-weight: normal; opacity: .85; margin-top: .25em; }
+.rengashotelli-linkit { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.3em; }
+.rengashotelli-linkit a { background: #EFE6D5; color: #423428; text-decoration: none; font-weight: bold; padding: .6em 1.2em; border-radius: 4px; transition: opacity .3s; }
+.rengashotelli-linkit a:hover { opacity: .8; }
+
+/* GALLERIALINKKI */
+.galleria-linkki { display: block; margin: 1.2em 3em 0; text-align: right; }
+.galleria-linkki a { color: #423428; font-weight: bold; font-size: 1.1em; text-decoration: underline; }
+
 /* CTA BANNER */
 .cta-banner { background-color: #423428; color: #EFE6D5; text-align: center; padding: 2em 3em; margin: 0 3em 3em; border-radius: 4px; }
 .cta-banner h2 { margin: 0 0 .4em; font-size: 1.8em; color: #EFE6D5; }
@@ -153,6 +173,11 @@ footer p { color: #423428; margin: 0; }
     .promo-row { padding: 1.5em 1.2em; }
     .divider { margin: 0 1.2em; }
     .cta-banner { margin: 0 1.2em 2em; padding: 1.5em 1.2em; }
+    .rengashotelli { margin: 1.5em 1.2em 0; padding: 1.3em; gap: 20px; }
+    .rengashotelli-kuva { flex: 0 0 100%; }
+    .rengashotelli-teksti h2 { font-size: 1.5em; }
+    .rengashotelli-teksti ul { columns: 1; }
+    .galleria-linkki { margin: 1em 1.2em 0; }
 }
 </style>
 </head>
@@ -176,6 +201,7 @@ footer p { color: #423428; margin: 0; }
             <li><a href="/hinnasto/hinnasto.html">Hinnasto</a></li>
             <li><a href="/yhteystiedot/yhteystiedot.html">Yhteystiedot</a></li>
             <li><a href="/palvelut/palvelut.html">Palvelut</a></li>
+            <li><a href="/galleria/galleria.html">Galleria</a></li>
         </ul>
         <button class="hamburger" id="hamburger" aria-label="Avaa valikko" aria-expanded="false">
             <span></span><span></span><span></span>
@@ -197,6 +223,32 @@ footer p { color: #423428; margin: 0; }
 
     <hr class="divider">
 
+    <!-- RENGASHOTELLI -->
+    <div class="rengashotelli">
+        <div class="rengashotelli-kuva">
+            <img src="kuvat/rengashotelli.jpg" alt="Rengashotelli-mainos: 49 euroa kaudelta, 89 euroa vuodelta" loading="lazy">
+        </div>
+        <div class="rengashotelli-teksti">
+            <h2>Rengashotelli</h2>
+            <p class="paikkakunnat">Kerava &nbsp;|&nbsp; Tuusula &nbsp;|&nbsp; Vantaa</p>
+            <ul>
+                <li>Renkaiden vaihto</li>
+                <li>Renkaiden pesu</li>
+                <li>Tasapainotus</li>
+                <li>Kunnon tarkastus</li>
+                <li>Ilmanpaineiden tarkastus ja lis&auml;ys</li>
+            </ul>
+            <p class="rengashotelli-hinta">49 &euro; / kausi &nbsp;&middot;&nbsp; 89 &euro; / vuosi
+                <span>Edullisin hinta alueella &mdash; renkaasi s&auml;ilyv&auml;t meill&auml; puhtaina ja kuivina.</span>
+            </p>
+            <div class="rengashotelli-linkit">
+                <a href="https://www.sumupbookings.com/hst-autofix?fbclid=IwY2xjawRsGE9leHRuA2FlbQIxMABicmlkETAwbWc4elNlNkFpTExmYmhMc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHqgPR0MScGwnUokHnE0bEHyCmIJMwVI7bSUUX2tX6Tx_D0j-xu8JNN5mF_Hn_aem_K0oBpAkqBn8RQ-MIjvuSTw" target="_blank" rel="noopener noreferrer">Varaa aika</a>
+                <a href="/yhteystiedot/yhteystiedot.html">Kysy lis&auml;&auml;</a>
+            </div>
+        </div>
+    </div>
+
+
     <!-- PHOTO GALLERY -->
     <span class="section-title">Töitämme</span>
     <div class="photo-grid">
@@ -212,7 +264,14 @@ footer p { color: #423428; margin: 0; }
         <div class="photo-item wide">
             <img src="pyörä.jpg" alt="Moottoripyörä" loading="lazy">
         </div>
+        <div class="photo-item wide">
+            <img src="kuvat/moottorivene2.jpg" alt="Moottorivene huoltoon tuotuna" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="kuvat/umpion-kirkastus.jpg" alt="Umpion kiillotus" loading="lazy">
+        </div>
     </div>
+    <span class="galleria-linkki"><a href="/galleria/galleria.html">Katso koko galleria &rarr;</a></span>
 
     <!-- PROMO CARDS -->
     <span class="section-title">Ajankohtaista</span>
@@ -273,7 +332,7 @@ const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const lightboxClose = document.getElementById('lightboxClose');
 
-document.querySelectorAll('.photo-item img, .promo-card img').forEach(img => {
+document.querySelectorAll('.photo-item img, .promo-card img, .rengashotelli-kuva img').forEach(img => {
     img.addEventListener('click', () => {
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;

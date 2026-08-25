@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HST-AUTOFIX galleria – kuvia korjaamon töistä Tuusulassa: huollot, moottoripyörät, veneet, valojen kirkastus ja rengashotelli. Mahlamäentie 64, 04310 Tuusula.">
+    <meta name="theme-color" content="#423428">
+    <link rel="icon" type="image/png" href="/HST-AUTOFIX.png">
+    <link rel="apple-touch-icon" href="/HST-AUTOFIX.png">
+    <title>Galleria – HST-AUTOFIX</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body {
+    background-color: #EFE6D5;
+    min-height: 100vh;
+    margin: 0;
+    font-family: inherit;
+}
+img { max-width: 100%; height: auto; display: block; }
+.container { width: 100%; max-width: 1400px; margin: 0 auto; }
+
+/* HEADER */
+header { display: flex; align-items: center; justify-content: space-between; padding: 0 1em; min-height: 70px; }
+.header-class { display: flex; gap: 12px; align-items: center; flex: 1; }
+.header-class a { display: flex; align-items: center; font-size: 1em; margin: 0; color: #423428; transition: opacity .3s; }
+.header-class a:hover { opacity: .7; }
+.header-class img { width: 2em; height: 2em; }
+.header-center { flex: 0; white-space: nowrap; }
+.header-center p { margin: 0; font-weight: bold; color: #423428; font-size: 1.8em; }
+.header-center a { color: #423428; text-decoration: none; font-size: 1em; font-weight: bold; margin: 0; transition: opacity .3s; }
+.header-center a:hover { opacity: .7; }
+.header-right { flex: 1; display: flex; justify-content: flex-end; }
+
+/* NAV */
+nav { display: flex; justify-content: center; width: 100%; padding: .9em 1em; background-color: #423428; position: relative; }
+.nav-links { display: flex; list-style: none; margin: 0; padding: 0; }
+.nav-links li a { color: #EFE6D5; text-decoration: none; font-size: 1.4em; font-weight: bold; margin: 0 18px; transition: opacity .3s; }
+.nav-links li a:hover { opacity: .75; }
+.hamburger {
+    display: none; flex-direction: column; justify-content: space-between;
+    width: 28px; height: 20px; background: none; border: none; cursor: pointer; padding: 0;
+    position: absolute; right: 1.2em; top: 50%; transform: translateY(-50%);
+}
+.hamburger span { display: block; width: 100%; height: 3px; background: #EFE6D5; border-radius: 3px; transition: all .35s; transform-origin: center; }
+.hamburger.open span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
+
+/* INTRO */
+.intro { padding: 2.5em 3em 1em; }
+.intro h1 { color: #423428; font-size: 2em; margin: 0 0 .3em; border-bottom: 3px solid #423428; padding-bottom: .2em; }
+.intro p { color: #423428; font-size: 1.15em; line-height: 1.7; margin: 0; max-width: 70ch; }
+
+/* SUODATTIMET */
+.filters { display: flex; flex-wrap: wrap; gap: 10px; padding: 1.5em 3em .5em; }
+.filter-btn {
+    font: inherit; font-weight: bold; font-size: 1em; cursor: pointer;
+    color: #423428; background: transparent;
+    border: 3px solid #423428; border-radius: 4px;
+    padding: .45em 1em; transition: background .25s, color .25s;
+}
+.filter-btn:hover { background: rgba(66,52,40,.12); }
+.filter-btn.active { background: #423428; color: #EFE6D5; }
+
+/* GALLERIAHILA */
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 1em 3em 2em; }
+.gallery-item {
+    overflow: hidden; border-radius: 4px; border: 3px solid #423428;
+    background: rgba(66,52,40,.06); padding: 0; cursor: zoom-in;
+    display: flex; flex-direction: column; text-align: left;
+    font: inherit; color: #423428;
+}
+.gallery-item img { width: 100%; height: 300px; object-fit: cover; transition: transform .4s ease; }
+.gallery-item:hover img { transform: scale(1.04); }
+.gallery-item figcaption { padding: .7em 1em; font-size: .95em; line-height: 1.4; }
+.gallery-item.hidden { display: none; }
+.empty-note { padding: 0 3em 2em; color: #423428; font-size: 1.1em; }
+
+/* CTA */
+.cta-banner { background-color: #423428; color: #EFE6D5; text-align: center; padding: 2em 3em; margin: 0 3em 3em; border-radius: 4px; }
+.cta-banner h2 { margin: 0 0 .4em; font-size: 1.8em; color: #EFE6D5; }
+.cta-banner address { font-style: normal; margin: 0 0 1em; font-size: 1.1em; color: #EFE6D5; }
+.cta-banner a { color: #EFE6D5; font-size: 1.1em; font-weight: bold; text-decoration: underline; }
+
+/* LIGHTBOX */
+dialog.lightbox-dialog {
+    padding: 0; border: none; background: transparent; overflow: visible;
+    max-width: 92vw; max-height: 92vh;
+}
+dialog.lightbox-dialog::backdrop { background: rgba(0,0,0,.88); cursor: zoom-out; }
+dialog.lightbox-dialog img {
+    max-width: 92vw; max-height: 78vh; object-fit: contain;
+    border: 4px solid #EFE6D5; border-radius: 4px; cursor: default;
+    box-shadow: 0 8px 40px rgba(0,0,0,.6); margin: 0 auto;
+}
+.lightbox-caption {
+    color: #EFE6D5; text-align: center; margin: .8em auto 0;
+    font-size: 1.05em; max-width: 60ch; line-height: 1.5;
+}
+.lightbox-close, .lightbox-nav {
+    color: #EFE6D5; font-weight: bold; cursor: pointer; line-height: 1;
+    user-select: none; transition: opacity .2s; background: none; border: none; padding: 0;
+}
+.lightbox-close { position: fixed; top: 1em; right: 1.2em; font-size: 2.4em; }
+.lightbox-nav { position: fixed; top: 50%; transform: translateY(-50%); font-size: 3em; padding: .2em .3em; }
+.lightbox-prev { left: .4em; }
+.lightbox-next { right: .4em; }
+.lightbox-close:hover, .lightbox-nav:hover { opacity: .7; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+}
+
+/* FOOTER */
+footer { padding: 20px; text-align: center; color: #423428; }
+footer p { color: #423428; margin: 0; }
+
+/* MOBIILI */
+@media (max-width: 980px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    header { min-height: 60px; padding: 0 .8em; }
+    .header-class img { width: 1.6em; height: 1.6em; }
+    .header-center p { font-size: 1.3em; }
+    nav { flex-direction: column; align-items: flex-start; padding: .7em 1em; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; flex-direction: column; width: 100%; padding: .6em 0 .2em; gap: 2px; }
+    .nav-links.open { display: flex; }
+    .nav-links li a { font-size: 1.2em; margin: 0; padding: .5em .2em; display: block; border-bottom: 1px solid rgba(239,230,213,.2); }
+    .intro { padding: 1.5em 1.2em .5em; }
+    .intro h1 { font-size: 1.6em; }
+    .filters { padding: 1.2em 1.2em .3em; gap: 8px; }
+    .filter-btn { font-size: .95em; padding: .4em .8em; border-width: 2px; }
+    .gallery-grid { grid-template-columns: 1fr; padding: 1em 1.2em 1.5em; }
+    .gallery-item img { height: 240px; }
+    .empty-note { padding: 0 1.2em 1.5em; }
+    .cta-banner { margin: 0 1.2em 2em; padding: 1.5em 1.2em; }
+    .lightbox-nav { font-size: 2.2em; }
+    dialog.lightbox-dialog img { max-height: 70vh; }
+}
+</style>
+</head>
+<body>
+
+    <header>
+        <div class="header-class">
+            <a href="https://www.facebook.com/p/HST-Autofix-61579099013716/" target="_blank" rel="noopener noreferrer">
+                <img src="../Facebook_Logo_Secondary.png" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/hstautofixsamppa/" target="_blank" rel="noopener noreferrer">
+                <img src="../Instagram_Glyph_Black.png" alt="Instagram">
+            </a>
+        </div>
+        <div class="header-center"><p><a href="/index.html">HST-AUTOFIX</a></p></div>
+        <div class="header-right"></div>
+    </header>
+
+    <nav>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/hinnasto/hinnasto.html">Hinnasto</a></li>
+            <li><a href="/yhteystiedot/yhteystiedot.html">Yhteystiedot</a></li>
+            <li><a href="/palvelut/palvelut.html">Palvelut</a></li>
+            <li><a href="/galleria/galleria.html">Galleria</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Avaa valikko" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+<div class="container">
+
+    <div class="intro">
+        <h1>Galleria</h1>
+        <p>Kuvia korjaamoltamme Mahlamäentiellä: huoltoja ja korjauksia, moottoripyöriä, veneitä, ajovalojen kirkastuksia sekä rengashotellin tilat. Klikkaa kuvaa nähdäksesi sen suurempana.</p>
+    </div>
+
+    <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="kaikki">Kaikki</button>
+        <button class="filter-btn" data-filter="rengashotelli">Rengashotelli</button>
+        <button class="filter-btn" data-filter="huollot">Huollot ja korjaukset</button>
+        <button class="filter-btn" data-filter="mp">Moottoripyörät</button>
+        <button class="filter-btn" data-filter="veneet">Veneet</button>
+        <button class="filter-btn" data-filter="valot">Valojen kirkastus</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+
+
+        <figure class="gallery-item" data-cat="rengashotelli" data-full="../kuvat/halli.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/halli.jpg" alt="Korjaamohalli, jossa auto nostimella ja moottoripyöriä" loading="lazy">
+            <figcaption>Korjaamohalli Mahlamäentiellä</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="huollot" data-full="../kuvat/huolto.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/huolto.jpg" alt="Moottoritilan johtosarjaa ja käynnistinreleen huoltoa" loading="lazy">
+            <figcaption>Moottoritilan sähkötöitä</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="huollot" data-full="../kuvat/tukivarsi.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/tukivarsi.jpg" alt="Kaksi apurunkoa vierekkäin: kunnostettu ja alkuperäinen" loading="lazy">
+            <figcaption>Apurunko kunnostettuna – ennen ja jälkeen</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="huollot" data-full="../kuvat/putkisto.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/putkisto.jpg" alt="Pakoputkiston osat levitettynä korjaamon lattialle" loading="lazy">
+            <figcaption>Pakoputkiston uusinta</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="huollot" data-full="../kuvat/autonpesu.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/autonpesu.jpg" alt="Valkoinen henkilöauto pesun jälkeen korjaamolla" loading="lazy">
+            <figcaption>Auton pesu ja puhdistus</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="huollot" data-full="../kuvat/asuntoauton-huolto.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/asuntoauton-huolto.jpg" alt="Matkailuvaunu korjaamon pihalla huoltoa varten" loading="lazy">
+            <figcaption>Matkailuvaunun huolto</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="mp" data-full="../kuvat/moottoripyora.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/moottoripyora.jpg" alt="Moottoripyöriä korjaamohallissa rengaskoneen vieressä" loading="lazy">
+            <figcaption>Moottoripyöriä korjaamolla</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="mp" data-full="../kuvat/pyora-huolto.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/pyora-huolto.jpg" alt="Oranssi custom-moottoripyörä korjaamolla huollossa" loading="lazy">
+            <figcaption>Moottoripyörän huolto</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="mp" data-full="../kuvat/maalaus.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/maalaus.jpg" alt="Vihreäksi maalattuja moottoripyörän osia riveissä" loading="lazy">
+            <figcaption>Moottoripyörän osien maalaus</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="veneet" data-full="../kuvat/moottorivene.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/moottorivene.jpg" alt="Veneen moottoritila avattuna huoltoa varten" loading="lazy">
+            <figcaption>Venemoottorin huolto</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="veneet" data-full="../kuvat/moottorivene2.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/moottorivene2.jpg" alt="Moottorivene trailerin päällä korjaamon pihalla" loading="lazy">
+            <figcaption>Moottorivene huoltoon tuotuna</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="veneet" data-full="../kuvat/veneenhuolto.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/veneenhuolto.jpg" alt="Vene trailerilla suojapeitteen alla korjaamon pihalla" loading="lazy">
+            <figcaption>Vene odottamassa huoltoa</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="valot" data-full="../kuvat/umpion-kirkastus.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/umpion-kirkastus.jpg" alt="Ajovalon umpio teipattuna kirkastusta varten" loading="lazy">
+            <figcaption>Ajovalon kirkastus – suojateippaus</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="valot" data-full="../kuvat/umpion-kirkastus2.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/umpion-kirkastus2.jpg" alt="Kirkastettu ajovalon umpio valmiina" loading="lazy">
+            <figcaption>Kirkastettu umpio valmiina</figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-cat="valot" data-full="../kuvat/umpion-kiillotus.jpg" tabindex="0" role="button">
+            <img src="../kuvat/pikku/umpion-kiillotus.jpg" alt="Punaisen auton kiillotettu ajovalon umpio" loading="lazy">
+            <figcaption>Umpion kiillotus</figcaption>
+        </figure>
+
+    </div>
+
+    <div class="cta-banner">
+        <h2>Kiinnostuitko? Varaa aika!</h2>
+        <address>Mahlamäentie 64, 04310 Tuusula &nbsp;·&nbsp; 050 537 4863 &nbsp;·&nbsp; hstautofix@gmail.com</address>
+        <a href="/yhteystiedot/yhteystiedot.html">Katso yhteystiedot ja aukioloajat →</a>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <dialog class="lightbox-dialog" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Sulje">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Edellinen kuva">&#8249;</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Seuraava kuva">&#8250;</button>
+        <img id="lightboxImg" src="" alt="">
+        <p class="lightbox-caption" id="lightboxCaption"></p>
+    </dialog>
+
+    <footer>
+        <p>&copy; 2026 HST-AUTOFIX</p>
+        <p style="font-size:2em;font-weight:bold;">hstautofixsamppa</p>
+    </footer>
+
+</div>
+<script>
+const btn = document.getElementById('hamburger');
+const links = document.getElementById('navLinks');
+btn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+});
+
+// Suodattimet
+const items = Array.from(document.querySelectorAll('.gallery-item'));
+document.getElementById('filters').addEventListener('click', e => {
+    const target = e.target.closest('.filter-btn');
+    if (!target) return;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === target));
+    const cat = target.dataset.filter;
+    items.forEach(it => it.classList.toggle('hidden', cat !== 'kaikki' && it.dataset.cat !== cat));
+});
+
+// Lightbox
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCaption = document.getElementById('lightboxCaption');
+let current = 0;
+
+function visibleItems() {
+    return items.filter(it => !it.classList.contains('hidden'));
+}
+
+function show(index) {
+    const list = visibleItems();
+    if (!list.length) return;
+    current = (index + list.length) % list.length;
+    const item = list[current];
+    lightboxImg.src = item.dataset.full;
+    lightboxImg.alt = item.querySelector('img').alt;
+    lightboxCaption.textContent = item.querySelector('figcaption').textContent;
+}
+
+function openLightbox(item) {
+    show(visibleItems().indexOf(item));
+    lightbox.showModal();
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    lightbox.close();
+    document.body.style.overflow = '';
+}
+
+items.forEach(item => {
+    item.addEventListener('click', () => openLightbox(item));
+    item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(item); }
+    });
+});
+
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('lightboxPrev').addEventListener('click', e => { e.stopPropagation(); show(current - 1); });
+document.getElementById('lightboxNext').addEventListener('click', e => { e.stopPropagation(); show(current + 1); });
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => {
+    if (!lightbox.open) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+});
+</script>
+</body>
+</html>
